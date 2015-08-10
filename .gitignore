@@ -1,0 +1,15 @@
+.env
+artisan
+bootstrap/
+config/database.php
+database/factories/
+database/seeds
+database/.gitignore
+node_modules/
+public/css/
+resources/lang/
+resources/assets/sass/
+server.php
+storage/
+tests/
+vendor/

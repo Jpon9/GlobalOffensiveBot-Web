@@ -1,0 +1,184 @@
+#modlog-query {
+	display: none;
+}
+
+.timeframe {
+	font-weight: bold;
+	padding: 10px 20px;
+
+	span {
+		opacity: 0.8;
+	}
+}
+
+.modlog #content table {
+	&:not(.filter-results) td:first-child {
+		max-width: 60px;
+	}
+
+	&:not(.filter-results) tr:last-child td {
+		border-bottom-width: 2px;
+		border: 1px solid #ddd;
+		border-top: 2px solid #ddd;
+		padding: 5px;
+		font-weight: bold;
+	}
+
+	&.filter-results {
+		table-layout: fixed;
+
+		td { background-color: #f9f9f9; }
+		input[type="checkbox"] {
+			position: relative;
+			top: 3px;
+		}
+		label {
+			position: relative;
+			top: 2px;
+			left: 8px;
+		}
+	}
+}
+
+/**
+ * Mod action icons taken from Reddit
+ */
+.modactions {
+	&.banuser,
+	&.unbanuser,
+	&.removelink,
+	&.approvelink,
+	&.removecomment,
+	&.approvecomment,
+	&.addmoderator,
+	&.removemoderator,
+	&.invitemoderator,
+	&.uninvitemoderator,
+	&.acceptmoderatorinvite,
+	&.addcontributor,
+	&.removecontributor,
+	&.editsettings,
+	&.editflair,
+	&.distinguish,
+	&.marknsfw,
+	&.wikirevise,
+	&.wikipermlevel,
+	&.wikibanned,
+	&.wikiunbanned,
+	&.wikicontributor,
+	&.wikipagelisted,
+	&.removewikicontributor,
+	&.ignorereports,
+	&.unignorereports,
+	&.sticky,
+	&.unsticky {
+	    height: 16px;
+	    width: 16px;
+	    display: block;
+	    content: " ";
+	    float: left;
+	    margin-right: 5px;
+	    background-repeat: no-repeat;
+	}
+
+	&.banuser {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -66px -752px;
+	}
+	&.unbanuser {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -44px -708px;
+	}
+	&.removelink {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -88px -686px;
+	}
+	&.approvelink {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -88px -642px;
+	}
+	&.removecomment {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -44px -686px;
+	}
+	&.approvecomment {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -66px -664px;
+	}
+	&.addmoderator,
+	&.invitemoderator,
+	&.acceptmoderatorinvite {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: 0px -642px;
+	}
+	&.removemoderator,
+	&.uninvitemoderator {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: 0px -708px;
+	}
+	&.addcontributor {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -44px -664px;
+	}
+	&.removecontributor {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -66px -686px;
+	}
+	&.wikipagelisted,
+	&.editsettings {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -88px -752px;
+	}
+	&.editflair {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -22px -774px;
+	}
+	&.distinguish {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -88px -664px;
+	}
+	&.marknsfw {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: 0px -686px;
+	}
+	&.wikirevise {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -22px -730px;
+	}
+	&.wikipermlevel {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: 0px -730px;
+	}
+	&.wikibanned {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -66px -752px;
+	}
+	&.wikiunbanned {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -44px -708px;
+	}
+	&.wikicontributor {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -44px -664px;
+	}
+	&.removewikicontributor {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -66px -686px;
+	}
+	&.ignorereports {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -22px -686px;
+	}
+	&.unignorereports {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -66px -708px;
+	}
+	&.sticky {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -22px -708px;
+	}
+	&.unsticky {
+	    background-image: url('/images/reddit-spritesheet.png');
+	    background-position: -88px -708px;
+	}
+}
