@@ -15,7 +15,7 @@ class SidebarController extends Loggable {
 	 */
 	public function index($posted = false)
 	{
-		$sidebar = json_decode(file_get_contents(config('app.botpath') . 'config/description.json'), true);
+		$sidebar = file_get_contents(config('app.botpath') . 'config/sidebar.txt');
 
 		$data = ['sidebar' => $sidebar];
 
@@ -32,28 +32,16 @@ class SidebarController extends Loggable {
 	public function updateSidebar(Request $request)
 	{
 		$this->validate($request, [
-			'template' => 'required'
+			'sidebar' => 'required'
 		]);
 
-		$newSidebar = [ 'template' => '','chunks'=>[] ];
-		$input = $request->all();
-		foreach ($input as $name => $body) {
-			if ($name == '_token') {
-				continue;
-			}
-			if ($name == 'template') {
-				$newSidebar['template'] = $body;
-				continue;
-			}
-			array_push($newSidebar['chunks'], array("name" => $name, "body" => $body));
-		}
-		$output = fopen(config('app.botpath') . 'config/description.json', 'w');
+		$output = fopen(config('app.botpath') . 'config/sidebar.txt', 'w');
 		flock($output, LOCK_EX);
-		fwrite($output, json_encode($newSidebar, JSON_NUMERIC_CHECK));
+		fwrite($output, $request->input('sidebar'));
 		flock($output, LOCK_UN);
 		fclose($output);
 
-		$this->log('Sidebar', Auth::user()->username, "Updated the sidebar.");
+		$this->log('Sidebar', Auth::user()->username, 'Updated the sidebar.');
 
 		return $this->index(true);
 	}

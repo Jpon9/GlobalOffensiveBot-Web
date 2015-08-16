@@ -43,7 +43,7 @@
 		var notices;
 		$.ajaxSetup({async:false});
 		$.getJSON("{!! URL::to('/notices/fetch') !!}", function(data) {
-			notices = data.notices;
+			notices = data;
 		});
 		$.ajaxSetup({async:true});
 		target = document.getElementById("notice-edit");
@@ -82,7 +82,6 @@
 					"permanent_notice": false,
 					"frequency": "once",
 					"created": parseInt(new Date().getTime() / 1000),
-					"edited": parseInt(new Date().getTime() / 1000),
 					"body": "Default thread body.",
 					"sticky_duration": 6,
 					"permanent_sticky": false,
@@ -92,7 +91,6 @@
 					"last_posted": 0,
 					"last_posted_id": "",
 					"unique_notice_id": generateNoticeId(),
-					"is_stickied": 'false',
 					"is_new_item": true
 				}
 			}
@@ -176,7 +174,6 @@
 			lastPosted(innerCollapsible, notice['last_posted']);
 			lastPostedId(innerCollapsible, notice['last_posted_id']);
 			uniqueNoticeId(innerCollapsible, notice['unique_notice_id']);
-			isStickied(innerCollapsible, notice['is_stickied']);
 			isNewItem(innerCollapsible, notice['is_new_item']);
 
 			innerCollapsible.appendChild(nF);
@@ -382,7 +379,6 @@
 				var n_created = getChildByAttr(parent.childNodes[i], 'name', 'created');
 				var n_last_posted = getChildByAttr(parent.childNodes[i], 'name', 'last_posted');
 				var n_last_posted_id = getChildByAttr(parent.childNodes[i], 'name', 'last_posted_id');
-				var n_is_stickied = getChildByAttr(parent.childNodes[i], 'name', 'is_stickied');
 
 				var n = getChildByAttr(parent.childNodes[i], 'name', 'is_new_item').value === 'true';
 
@@ -429,13 +425,11 @@
 				if (n_created.value !== oV(n_created) || n) { notice.created = n_created.value; }
 				if (n_last_posted.value !== oV(n_last_posted) || n) { notice.last_posted = n_last_posted.value; }
 				if (n_last_posted_id.value !== oV(n_last_posted_id) || n) { notice.last_posted_id = n_last_posted_id.value; }
-				if (n_is_stickied.value !== oV(n_is_stickied) || n) { notice.is_stickied = (n_is_stickied.value === 'true'); }
-				notice.edited = parseInt(new Date().getTime() / 1000);
 				notice.unique_notice_id = oV(getChildByAttr(parent.childNodes[i], 'name', 'unique_notice_id'));
 
 				var resetTiming = getChildByAttr(parent.childNodes[i], 'name', 'reset_timing').checked;
 				if (resetTiming) {
-					notice.created = notice.edited;
+					notice.created = parseInt(new Date().getTime() / 1000);
 					notice.last_posted = 0;
 					notice.last_posted_id = "";
 				}
@@ -470,9 +464,7 @@
 					created: n_created.value,
 					last_posted: n_last_posted.value,
 					last_posted_id: n_last_posted_id.value,
-					is_stickied: n_is_stickied.value === 'true',
 					unique_notice_id: notice.unique_notice_id,
-					edited: notice.edited,
 					is_new_item: false
 				});
 			}

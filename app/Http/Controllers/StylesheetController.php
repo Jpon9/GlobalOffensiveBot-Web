@@ -15,7 +15,7 @@ class StylesheetController extends Loggable {
 	 */
 	public function index($posted = false)
 	{
-		$stylesheet = file_get_contents(config('app.botpath') . 'config/stylesheet/main_stylesheet.txt');
+		$stylesheet = file_get_contents(config('app.botpath') . 'config/stylesheet.txt');
 
 		$data = ['stylesheet' => $stylesheet];
 
@@ -35,7 +35,7 @@ class StylesheetController extends Loggable {
 			'stylesheet' => 'required|max:100000'
 		]);
 
-		$output = fopen(config('app.botpath') . 'config/stylesheet/main_stylesheet.txt', 'w');
+		$output = fopen(config('app.botpath') . 'config/stylesheet.txt', 'w');
 		flock($output, LOCK_EX);
 		fwrite($output, $request->input('stylesheet'));
 		flock($output, LOCK_UN);

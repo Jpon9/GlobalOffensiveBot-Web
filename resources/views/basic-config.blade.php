@@ -19,19 +19,16 @@
 			</div>
 		@endif
 		{!! Form::open(array('class' => 'form-horizontal')) !!}
-			{!! Form::hidden('google_api_key', $google_api_key) !!}
-			{!! Form::hidden('gosugamers_api_key', $gosugamers_api_key) !!}
-			{!! Form::hidden('steam_api_key', $steam_api_key) !!}
 			<div class="form-group">
-				{!! Form::label('target_subreddit', 'Target Subreddit', array('class' => 'col-sm-3 control-label')) !!}
+				{!! Form::label('subreddit', 'Subreddit', array('class' => 'col-sm-3 control-label')) !!}
 				<div class="col-sm-2">
-					{!! Form::text('target_subreddit', $target_subreddit, array('class' => 'form-control')) !!}
+					{!! Form::text('subreddit', $subreddit, array('class' => 'form-control')) !!}
 				</div>
 			</div>
 			<div class="form-group">
-				{!! Form::label('update_timeout', 'Update Timeout (minutes)', array('class' => 'col-sm-3 control-label')) !!}
+				{!! Form::label('update_interval_mins', 'Update Timeout (minutes)', array('class' => 'col-sm-3 control-label')) !!}
 				<div class="col-sm-1">
-					{!! Form::text('update_timeout', $update_timeout, array('class' => 'form-control')) !!}
+					{!! Form::text('update_interval_mins', $update_interval_mins, array('class' => 'form-control')) !!}
 				</div>
 			</div>
 			<div class="form-group">

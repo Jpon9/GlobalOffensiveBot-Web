@@ -15,7 +15,7 @@ class DemonymsController extends Loggable {
 	 */
 	public function index($posted = false)
 	{
-		$demonyms = json_decode(file_get_contents(config('app.botpath') . 'config/stylesheet/random_demonyms.json'), true)['demonyms'];
+		$demonyms = json_decode(file_get_contents(config('app.botpath') . 'config/demonyms.json'), true);
 
 		$data = ['demonyms' => $demonyms];
 
@@ -33,19 +33,19 @@ class DemonymsController extends Loggable {
 	{
 		$input = $request->all();
 
-		$demonyms = ['demonyms' => []];
+		$demonyms = [];
 
 		foreach ($input as $name => $demonym) {
 			if ($name == "_token") {
 				continue;
 			}
 
-			array_push($demonyms['demonyms'], ["subscribers" => $demonym[0], "online" => $demonym[1]]);
+			array_push($demonyms, ["subscribers" => $demonym[0], "online" => $demonym[1]]);
 		}
 
-		$output = fopen(config('app.botpath') . 'config/stylesheet/random_demonyms.json', 'w');
+		$output = fopen(config('app.botpath') . 'config/demonyms.json', 'w');
 		flock($output, LOCK_EX);
-		fwrite($output, json_encode($demonyms, JSON_NUMERIC_CHECK));
+		fwrite($output, json_encode($demonyms, JSON_NUMERIC_CHECK | JSON_PRETTY_PRINT));
 		flock($output, LOCK_UN);
 		fclose($output);
 

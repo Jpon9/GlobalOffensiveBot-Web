@@ -37,7 +37,7 @@ class NoticesController extends Loggable {
 		$notices = json_decode($request->input('notices'), true);
 		$output = fopen(config('app.botpath') . 'config/notices.json', 'w');
 		flock($output, LOCK_EX);
-		fwrite($output, json_encode(["notices" => $this->mergeNotices($oldNotices['notices'], $notices)], JSON_NUMERIC_CHECK | JSON_PRETTY_PRINT));
+		fwrite($output, json_encode($this->mergeNotices($oldNotices, $notices), JSON_NUMERIC_CHECK | JSON_PRETTY_PRINT));
 		flock($output, LOCK_UN);
 		fclose($output);
 
@@ -52,6 +52,7 @@ class NoticesController extends Loggable {
 		// Layer in the diffs from the webpanel
 		foreach ($b as $bo) {
 			$matchFound = false;
+			var_dump($a);
 			foreach ($a as $ai => $av) {
 				if ($a[$ai]['unique_notice_id'] == $bo['unique_notice_id']) {
 					$matchFound = true;

@@ -206,5 +206,5 @@ return [
      * Special config for GOB-Web
      */
     
-    'botpath' => '/usr/bin/gob/sidebar/',
+    'botpath' => '/usr/local/gob/sidebar/',
 ];

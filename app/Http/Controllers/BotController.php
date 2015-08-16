@@ -39,7 +39,7 @@ class BotController extends Controller {
 	 */
 	public function metadata()
 	{
-		$metadata = json_decode(file_get_contents(config('app.botpath') . 'cache/metadata.json'), true);
+		$metadata = json_decode(file_get_contents(config('app.botpath') . 'app-cache/metadata.json'), true);
 
 		return response()->json($metadata);
 	}
